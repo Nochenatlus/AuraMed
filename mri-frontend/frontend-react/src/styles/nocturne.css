@@ -2,15 +2,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
-  --color-bg: #ffffff;
-  --color-surface: #ffffff;
-  --color-text: #211d2e;
-  --color-accent: #5995dd; /* requested move off purple to blue: same OKLCH
-     L 0.660 / C 0.125 the round-7 blurple held, hue turned from 289.2
-     (purple) to 254 (blue) — same visual weight, new family. */
-  --color-accent-2: #85acdd; /* same hue turn, same L 0.734, chroma at the
-     same 2:3 proportion it held */
+  /* TEMA (tweakcn) — gül/pembe paletine geçiş. Token adları korunur, bileşenler otomatik uyar. */
+  --color-bg: oklch(0.9940 0 0);
+  --color-surface: oklch(0.9940 0 0);
+  --color-text: oklch(0.16 0 0);
+  --color-accent: oklch(0.5608 0.1952 2.7932);   /* TEMA primary — gül */
+  --color-accent-2: oklch(0.66 0.15 2.7932);     /* daha açık gül (ikincil accent) */
   --color-divider: color-mix(in srgb, var(--color-text) 12%, transparent);
+  --color-sidebar: oklch(0.42 0.16 2.7932);      /* koyu gül — beyaz metin okunur */
 
   /* Tonal ramps — generated in OKLCH on one shared lightness scale, so the
      same step of any role matches the others in visual value. Light-theme
@@ -31,25 +30,27 @@
   --color-neutral-800: #e4e7f5;
   --color-neutral-900: #f3f5fe;
 
-  --color-accent-100: #1a2c42;
-  --color-accent-200: #21446c;
-  --color-accent-300: #305f97;
-  --color-accent-400: #417cc2;
-  --color-accent-500: #5e9be3;
-  --color-accent-600: #83bbff;
-  --color-accent-700: #b7d7ff;
-  --color-accent-800: #d9eaff;
-  --color-accent-900: #eff6ff;
+  /* Gül accent rampası (100=koyu → 900=açık) — tag/vurgu renkleri buradan gelir. */
+  --color-accent-100: oklch(0.32 0.13 2.7932);
+  --color-accent-200: oklch(0.40 0.16 2.7932);
+  --color-accent-300: oklch(0.50 0.19 2.7932);
+  --color-accent-400: oklch(0.5608 0.1952 2.7932);
+  --color-accent-500: oklch(0.64 0.185 2.7932);
+  --color-accent-600: oklch(0.73 0.155 2.7932);
+  --color-accent-700: oklch(0.83 0.105 2.7932);
+  --color-accent-800: oklch(0.91 0.055 2.7932);
+  --color-accent-900: oklch(0.96 0.028 2.7932);
 
-  --color-accent-2-100: #212c3b;
-  --color-accent-2-200: #2f445e;
-  --color-accent-2-300: #416085;
-  --color-accent-2-400: #577dab;
-  --color-accent-2-500: #749bcb;
-  --color-accent-2-600: #93baea;
-  --color-accent-2-700: #b7d7ff;
-  --color-accent-2-800: #d9eaff;
-  --color-accent-2-900: #eff6ff;
+  /* İkincil accent — daha yumuşak pembe (info tonundaki durum etiketleri). */
+  --color-accent-2-100: oklch(0.35 0.09 352);
+  --color-accent-2-200: oklch(0.43 0.11 352);
+  --color-accent-2-300: oklch(0.52 0.115 352);
+  --color-accent-2-400: oklch(0.60 0.105 352);
+  --color-accent-2-500: oklch(0.68 0.09 352);
+  --color-accent-2-600: oklch(0.77 0.07 352);
+  --color-accent-2-700: oklch(0.85 0.05 352);
+  --color-accent-2-800: oklch(0.92 0.035 352);
+  --color-accent-2-900: oklch(0.96 0.02 352);
 
   /* Deck section-divider ground — review round 3: saturation as presence.
      Dividers take a saturated deep indigo (hue 277, the neutral ramp's own
@@ -73,9 +74,10 @@
   --space-6: 16.8px;
   --space-8: 22.4px;
 
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 14px;
+  /* TEMA — yumuşak, büyük köşe yuvarlaklığı (tweakcn ~1.4rem tabanı). */
+  --radius-sm: 16px;
+  --radius-md: 20px;
+  --radius-lg: 24px;
 
   /* Elevation — derived from the ground: soft ink-tinted shadows on a
      light theme, a hairline edge + ambient darkness on a dark one. */
@@ -90,9 +92,10 @@
    ramp run back in its original dark→light direction (100→900) so every
    --color-neutral-N call site gets the right value without changes. */
 :root.dark {
-  --color-bg: #16141f;
-  --color-surface: #1e1c2a;
-  --color-text: #f3f5fe;
+  --color-bg: oklch(0.1221 0 0);
+  --color-surface: oklch(0.2132 0.0042 264.4789);
+  --color-text: oklch(0.9551 0 0);
+  --color-sidebar: oklch(0.24 0.06 2.7932);
 
   --color-neutral-100: #f3f5fe;
   --color-neutral-200: #e4e7f5;
@@ -130,7 +133,7 @@ h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: var(--font-headi
    ══════════════════════════════════════════════════════════════════════ */
 
 *, *::before, *::after { box-sizing: border-box; }
-body { margin: 0; font-size: 15px; line-height: 1.55; font-weight: 400; }
+body { margin: 0; font-size: 13px; line-height: 1.5; font-weight: 400; }
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading); font-weight: var(--font-heading-weight);
   line-height: 1.12; letter-spacing: -0.015em; margin: 0 0 var(--space-2);
@@ -172,7 +175,7 @@ figcaption {
   display: inline-flex; align-items: center; justify-content: center; gap: 6px;
   cursor: ; text-decoration: none;
   font-family: var(--font-heading); font-weight: var(--font-heading-weight);
-  font-size: 14px; line-height: 1.2; color: var(--color-text); /* matches the .input's 14px —
+  font-size: 13px; line-height: 1.2; color: var(--color-text); /* matches the .input's 14px —
      the pair sits side by side in sign-up rows */
   background: transparent; border: 1px solid transparent;
   padding: var(--space-2) calc(var(--space-3) * 1.2);
@@ -199,14 +202,14 @@ figcaption {
 }
 .input {
   width: 100%; min-height: 36px; padding: 6px 10px; font: inherit;
-  font-size: 14px; color: var(--color-text); caret-color: var(--color-accent);
+  font-size: 13px; color: var(--color-text); caret-color: var(--color-accent);
   background: var(--color-surface);
   border: 1px solid var(--color-divider); border-radius: var(--radius-md);
 }
 .input:hover { border-color: color-mix(in srgb, var(--color-text) 45%, transparent); }
 .input:focus-visible { border-color: var(--color-accent); outline-offset: 0; }
 textarea.input { min-height: 90px; resize: vertical; }
-.radio { display: inline-flex; align-items: center; gap: 8px; cursor: ; font-size: 14px; }
+.radio { display: inline-flex; align-items: center; gap: 8px; cursor: ; font-size: 13px; }
 .radio input, .seg-opt input {
   position: absolute; opacity: 0; width: 0; height: 0; -events: none;
 }
@@ -291,11 +294,11 @@ textarea.input { min-height: 90px; resize: vertical; }
   font-family: var(--font-heading); font-weight: var(--font-heading-weight);
   font-size: 18px; margin-right: auto;
 }
-.nav a { color: inherit; text-decoration: none; font-size: 14px; }
+.nav a { color: inherit; text-decoration: none; font-size: 13px; }
 .nav a:hover, .nav a[aria-current='page'] { color: var(--color-accent); }
 
 /* — tables — */
-.table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.table { width: 100%; border-collapse: collapse; font-size: 13px; }
 .table th {
   text-align: left; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
   color: color-mix(in srgb, var(--color-text) 60%, transparent);
@@ -341,7 +344,7 @@ textarea.input { min-height: 90px; resize: vertical; }
   font-family: var(--font-heading); font-weight: var(--font-heading-weight);
   font-size: 20px;
 }
-.dialog-body { font-size: 14px; opacity: 0.85; }
+.dialog-body { font-size: 13px; opacity: 0.85; }
 .dialog-actions { display: flex; justify-content: flex-end; gap: var(--space-2); margin-top: var(--space-2); }
 
 /* — icon weight — */

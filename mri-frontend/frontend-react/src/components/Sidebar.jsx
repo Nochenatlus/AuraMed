@@ -84,7 +84,7 @@ export default function Sidebar({
     <div className={'sidebar-root' + (mobileOpen ? ' sidebar-open' : '')} style={{
       width: collapsed ? 72 : 240, minWidth: collapsed ? 72 : 240, flex: 'none', transition: 'width .18s ease, min-width .18s ease',
       borderRight: '1px solid var(--color-divider)',
-      background: 'rgb(29, 90, 151)',
+      background: 'var(--color-sidebar)',
       display: 'flex', flexDirection: 'column', gap: 'var(--space-2)', padding: 'var(--space-4) var(--space-3)'
     }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: collapsed ? 'center' : 'space-between', gap: 'var(--space-2)', padding: '0 var(--space-2)' }}>
